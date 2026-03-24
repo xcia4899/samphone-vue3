@@ -1,0 +1,280 @@
+
+
+
+
+
+
+// ========================================
+// base
+// ========================================
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: $color-darkred;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.content-area {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.bodyback {
+  position: relative;
+  background-color: $color-darkred;
+  color: $color-white;
+}
+
+.row-01,
+.row-02,
+.row-03,
+.row-04,
+.row-05,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+// ========================================
+// shared image block
+// ========================================
+.img-control {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: left center;
+    transition: transform 0.3s ease;
+  }
+}
+
+
+
+
+
+
+
+
+
+// ========================================
+// responsive
+// ========================================
+@media screen and (max-width: 670px) {
+  .my-navbar {
+    margin: 16px 16px 0;
+    padding: 8px 16px;
+
+    .my-offcanvas {
+      margin: -16px -16px;
+    }
+  }
+
+  .row-01 {
+    .aniarea {
+      height: 100px;
+    }
+
+    .textani-LB {
+      left: 0;
+      bottom: 6%;
+      width: calc(100% / 2);
+      height: 100px;
+      margin: 0 0 8px 8px;
+      font-size: clamp(2rem, 8vw, 6rem);
+    }
+
+    .textani-LT {
+      top: 0;
+      width: calc(100% / 3);
+      height: 120px;
+      margin-left: 8px;
+    }
+
+    .textani-LT-02 {
+      left: 0;
+      top: 12%;
+      width: calc(100% / 3);
+      height: 80px;
+      margin-left: 16px;
+      font-size: clamp(2rem, 2vw, 6rem);
+      justify-content: flex-start;
+    }
+
+    .textani-RT {
+      right: 0;
+      top: 0;
+      width: calc(100% / 3);
+      height: 120px;
+      margin-right: 8px;
+      justify-content: flex-end;
+    }
+
+    .textani-RB {
+      right: 0;
+      bottom: 4%;
+      width: calc(100% / 2);
+      height: 100px;
+      margin: 0 8px 16px 0;
+      justify-content: flex-end;
+    }
+
+    .textani-RM {
+      right: calc(12% + 50px);
+      bottom: calc(12% + 70px);
+      width: calc(100% / 4);
+      height: calc(100% / 2.5 - 60px);
+      overflow: visible;
+    }
+
+    .aniwe,
+    .aniare {
+      font-size: clamp(4rem, 8vw, 8rem);
+    }
+
+    .anitech {
+      font-size: clamp(2rem, 6vw, 7rem);
+    }
+
+    .aniImp {
+      font-size: clamp(2rem, 5vw, 6rem);
+    }
+
+    .anitpro {
+      font-size: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .anitsol {
+      font-size: clamp(12px, 2vw, 6rem);
+    }
+
+    .circle {
+      width: 180px;
+      clip-path: circle(40% at 50% 50%);
+
+      &:hover {
+        clip-path: circle(50% at 50% 50%);
+      }
+    }
+  }
+
+  .row-02,
+  .row-03 {
+    height: calc(var(--vh, 1vh) * 100);
+    padding: 0 16px;
+
+    .section-inner,
+    .section-inner.reverse {
+      flex-direction: column-reverse;
+    }
+
+    .text-area {
+      width: 0%;
+      height: 0%;
+      padding: 0 32px;
+      margin-bottom: 64px;
+
+      .title {
+        margin: 0;
+      }
+    }
+
+    .img-control {
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100);
+    }
+  }
+
+  .row-04 {
+    .horizontal-area {
+      .card.cardopen {
+        width: 80vw;
+        height: 80vh;
+        margin: 0;
+        border-radius: 8px;
+
+        .title {
+          top: 62%;
+          left: 25%;
+        }
+
+        .content-bg {
+          left: 0;
+          top: 60%;
+          width: 100%;
+          height: 40%;
+          border-radius: 0 0 8px 8px;
+        }
+
+        .content {
+          left: 50%;
+          top: 62%;
+          width: 50%;
+          height: 40%;
+          padding: 8px;
+          font-size: 16px;
+
+          .imagedetal {
+            width: 80%;
+            left: -90%;
+          }
+        }
+
+        &:hover {
+          .title {
+            top: 62%;
+            left: 25%;
+          }
+        }
+      }
+    }
+  }
+
+  .row-05 {
+    .card {
+      width: 25%;
+      min-width: 40vw;
+    }
+  }
+
+  .site-footer {
+    .footer-top {
+      justify-content: center;
+    }
+
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+
+      .footer-section {
+        align-items: center;
+      }
+    }
+  }
+}
