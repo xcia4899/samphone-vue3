@@ -1,289 +1,350 @@
 <template>
   <section class="row-04">
-    <div class="hiddenarea">
-      <div class="horizontal-area">
-        <div
+    <div class="process-inner">
+      <Swiper
+        class="process-swiper"
+        :modules="[Navigation]"
+        :slides-per-view="'auto'"
+        :space-between="60"
+        :centered-slides="false"
+        :grab-cursor="true"
+        :navigation="true"
+         :scrollbar="{ draggable: true }"
+      >
+        <SwiperSlide
           v-for="(item, index) in carddata"
           :key="index"
-          class="card cardani"
-          :class="{ cardopen: openedCard === index }"
-          @click="toggleCard(index)"
+          class="process-slide"
         >
-          <div class="pic">
-            <img :src="item.image" :alt="item.title" />
-
-            <div v-if="openedCard !== index" class="undertext open">
-              click Open
+          <article class="card cardani" @click="openCard(item)">
+            <div class="pic">
+              <img :src="item.image" :alt="item.title" />
+              <div class="undertext">click Open</div>
             </div>
 
-            <div v-else class="undertext close">click Close</div>
+            <h3 class="title">{{ item.title }}</h3>
+          </article>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+
+    <!-- 彈出內容 -->
+    <transition name="fade">
+      <div v-if="selectedCard" class="process-modal" @click.self="closeCard">
+        <div class="process-modal-box">
+          <button class="close-btn" @click="closeCard">✕</button>
+
+          <div class="modal-left">
+            <img
+              class="modal-main-image"
+              :src="selectedCard.image"
+              :alt="selectedCard.title"
+            />
           </div>
 
-          <div v-if="openedCard === index" class="content-bg"></div>
-          <div class="title">{{ item.title }}</div>
+          <div class="modal-right">
+            <h3 class="modal-title">{{ selectedCard.title }}</h3>
+            <p class="modal-content">{{ selectedCard.content }}</p>
 
-          <div v-if="openedCard === index" class="content">
-            <p>{{ item.content }}</p>
-            <img class="imagedetal" :src="item.imagedetal" :alt="item.title" />
+            <img
+              v-if="selectedCard.imagedetal"
+              class="modal-detail-image"
+              :src="selectedCard.imagedetal"
+              :alt="selectedCard.title"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation } from "swiper/modules";
 import { processCards } from "../data/processCards";
 
-const openedCard = ref(null);
-const carddata = processCards;
+import "swiper/css";
+import "swiper/css/navigation";
 
-function toggleCard(index) {
-  openedCard.value = openedCard.value === index ? null : index;
+type ProcessCard = {
+  title: string;
+  image: string;
+  content: string;
+  imagedetal?: string;
+};
+
+const carddata = processCards as ProcessCard[];
+
+const selectedCard = ref<ProcessCard | null>(null);
+
+function openCard(item: ProcessCard) {
+  selectedCard.value = item;
+  document.body.style.overflow = "hidden";
+}
+
+function closeCard() {
+  selectedCard.value = null;
+  document.body.style.overflow = "";
 }
 </script>
 
 <style lang="scss">
-// ========================================
-// row-04
-// ========================================
 .row-04 {
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
   padding: 16px;
-
-  .hiddenarea {
-    width: 100%;
+  background:$color-darkred;
+  // overflow: hidden;
+  display: grid;
+  place-items: center;
+  .process-inner {
     height: 100%;
-    overflow: hidden;
+    display: grid;
+    place-items: center;
   }
 
-  .horizontal-area {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    width: 100%;
-    min-width: 4000px;
+  .process-swiper {
     height: 100%;
-    transform: translate(100vw, 0);
+    width: 100%;
+    padding: 0 40px;
 
-    .card {
-      width: 300px;
-      height: 60%;
-      margin: 0 60px;
-      padding: 0;
-      color: $color-white;
-      cursor: pointer;
-      background-color: transparent;
-      border-radius: 20px;
-      box-shadow: 0 0 0 0 rgba($color-white, 1);
-      transition: all 0.4s ease;
+  }
 
-      .pic {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        overflow: hidden;
+  .process-slide {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+ 
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          filter: brightness(0.4);
-          transform: scale(1);
-          transition: all 0.4s ease;
-        }
-      }
+  .card {
+    position: relative;
+    width: 300px;
+    height: 520px;
+    border-radius: 20px;
+    // overflow: hidden;
+    cursor: pointer;
+    color: $color-white;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
 
-      .title {
-        position: absolute;
-        left: 50%;
-        top: 20%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        font-size: 36px;
-        font-weight: 900;
-        letter-spacing: 3px;
-        color: $color-white;
-        text-shadow:
-          -1px -1px 0 $color-darkred,
-          1px -1px 0 $color-darkred,
-          -1px 1px 0 $color-darkred,
-          1px 1px 0 $color-darkred;
-        transition: all 0.4s ease;
-      }
-
-      .content {
-        position: absolute;
-        left: 0;
-        top: 72px;
-        width: 40%;
-        padding: 32px;
-        color: $color-white;
-        line-height: 1.5;
-        letter-spacing: 0.03em;
-        word-break: break-word;
-        white-space: normal;
-        text-align: justify;
-        opacity: 0;
-        transition: all 0.4s ease 1s;
-        animation: contentani 1s ease-in forwards;
-      }
-
-      .imagedetal {
-        position: absolute;
-        left: 10%;
-        bottom: 32px;
-        width: 80%;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 8px;
-      }
-
-      .content-bg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 40%;
-        height: 100%;
-        background-color: rgba($color-darkred, 0.5);
-        backdrop-filter: blur(4px);
+    &:hover {
+      .pic img {
+        transform: scale(1.05);
+        filter: brightness(0.6);
       }
 
       .undertext {
-        position: absolute;
-        top: 0;
-        padding: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-align: center;
-        background-color: rgba($color-lightkred, 0.4);
-        backdrop-filter: blur(2px);
-        transform: translateY(-100%);
-        transition: all 0.3s ease-out;
-      }
-
-      .open {
-        top: 8px;
-        right: 8px;
-        width: calc(100% - 16px);
-        padding: 4px 16px;
-        border-radius: 20px;
-        transform: translateY(-130%);
-
-        &:hover {
-          background-color: rgba($color-lightkred, 0.8);
-        }
-      }
-
-      .close {
-        top: 16px;
-        right: 16px;
-        padding: 4px 12px;
-        border-radius: 8px;
-        transform: translateY(-150%);
-        background-color: rgba($color-lightkred, 0.6);
-
-        &:hover {
-          background-color: rgba($color-lightkred, 0.8);
-        }
-      }
-
-      &:hover {
-        img {
-          filter: brightness(0.6);
-          transform: scale(1.1);
-        }
-
-        .title {
-          top: calc(20% - 8px);
-          font-size: 40px;
-        }
-
-        .undertext {
-          transform: translateY(0%);
-        }
+        transform: translateY(0);
+        opacity: 1;
       }
     }
 
-    .card.cardopen {
-      width: 900px;
-      height: 600px;
-      margin: 0;
-      border-radius: 8px;
+    .pic {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 20px;
 
-      .pic {
-        border-radius: 8px;
-
-        img {
-          filter: brightness(1);
-          border-radius: 8px;
-        }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.45);
+        transition:
+          transform 0.4s ease,
+          filter 0.4s ease;
       }
+    }
+
+    .title {
+      position: absolute;
+      left: 50%;
+      top: 18%;
+      transform: translateX(-50%);
+      z-index: 2;
+      white-space: nowrap;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: $color-white;
+      text-shadow:
+        -1px -1px 0 $color-darkred,
+        1px -1px 0 $color-darkred,
+        -1px 1px 0 $color-darkred,
+        1px 1px 0 $color-darkred;
+    }
+
+    .undertext {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-white;
+      background-color: rgba($color-lightkred, 0.45);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+/* modal */
+.process-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.process-modal-box {
+  position: relative;
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(20, 20, 20, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.14);
+  transition: 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+}
+
+.modal-left {
+  min-height: 580px;
+
+  .modal-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.modal-right {
+  padding: 72px 32px 32px;
+  // overflow-y: auto;
+  color: $color-white;
+
+  .modal-title {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  .modal-content {
+    margin-bottom: 24px;
+    line-height: 1.8;
+    text-align: justify;
+    white-space: pre-line;
+  }
+
+  .modal-detail-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* 動畫 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 手機版 */
+@media (max-width: 768px) {
+  .row-04 {
+    .process-swiper {
+      padding: 0 12px;
+    }
+
+    .process-slide {
+      width: 78vw;
+    }
+
+    .card {
+      width: 78vw;
+      height: 420px;
 
       .title {
-        top: 60px;
-        left: 30%;
+        font-size: 26px;
       }
+    }
+  }
 
-      .content {
-        top: 120px;
-        width: 40%;
-        height: calc(100% - 120px);
-        padding: 32px;
-      }
+  .process-modal-box {
+    grid-template-columns: 1fr;
+    width: 94vw;
+    max-height: 88vh;
+  }
 
-      &:hover {
-        box-shadow: none;
+  .modal-left {
+    min-height: 240px;
+    max-height: 280px;
+  }
 
-        img {
-          filter: brightness(1);
-          transform: scale(1);
-        }
+  .modal-right {
+    padding: 56px 20px 20px;
 
-        .title {
-          top: 60px;
-          font-size: 36px;
-        }
-
-        .undertext {
-          transform: translateY(0%);
-        }
-      }
+    .modal-title {
+      font-size: 24px;
     }
   }
 }
 
-@keyframes contentani {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  40% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// ========================================
-// decorative card border
-// ========================================
+/* 你原本的外框動畫可保留 */
 .cardani {
   &::before,
   &::after {
     content: "";
-    display: block;
     position: absolute;
-    box-sizing: border-box;
     width: 20px;
     height: 20px;
+    pointer-events: none;
+    box-sizing: border-box;
   }
 
   &::before {
@@ -291,7 +352,6 @@ function toggleCard(index) {
     left: -20px;
     border-top: 2px solid $color-white;
     border-left: 2px solid $color-white;
-    transition: all 0.3s linear;
     animation: cardborderauto 2s ease-out infinite;
   }
 
@@ -300,7 +360,6 @@ function toggleCard(index) {
     bottom: -20px;
     border-right: 2px solid $color-white;
     border-bottom: 2px solid $color-white;
-    transition: all 0.3s ease;
     animation: cardborderauto 2s ease-out infinite;
   }
 
@@ -316,12 +375,10 @@ function toggleCard(index) {
     height: 20px;
     border-width: 4px;
   }
-
   50% {
     width: 12px;
     height: 12px;
   }
-
   100% {
     width: 20px;
     height: 20px;
@@ -335,17 +392,17 @@ function toggleCard(index) {
     height: 20px;
     border-radius: 0;
   }
-
   70% {
     width: calc(100% + 40px);
     height: calc(100% + 40px);
     border-radius: 0;
   }
-
   100% {
     width: calc(100% + 40px);
     height: calc(100% + 40px);
     border-radius: 20px;
   }
 }
+
+
 </style>

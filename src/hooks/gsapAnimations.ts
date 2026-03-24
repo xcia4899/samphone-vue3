@@ -1,4 +1,3 @@
-// src/hooks/useGsapAnimations.ts
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -36,10 +35,7 @@ type TimelineItem = {
 };
 
 export function useGsapAnimations() {
-  function setVhUnit() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
+
 
   function scrollAnimation(
     selector: string,
@@ -92,395 +88,60 @@ export function useGsapAnimations() {
   }
 
   function rowSetAni() {
-    let rows: RowAnimationItem[] = [];
+    const isMobile = window.innerWidth <= 670;
 
-    if (window.innerWidth <= 670) {
-      rows = [
-        {
-          selector: ".background-fixed",
-          steps: [
-            {
-              animation: { top: 300 },
-              scroll: { start: "top top", end: "+=1000" },
-            },
-          ],
-        },
-        {
-          selector: ".row-01",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=6400", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-01 .bg-layer",
-          steps: [
-            {
-              animation: { opacity: 1 },
-              scroll: { start: "top top", end: "+=500" },
-            },
-          ],
-        },
+    const config = {
+      backgroundTop: isMobile ? 300 : 200,
 
-        {
-          selector: ".row-02",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=4000", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .r2-img",
-          steps: [
-            {
-              animation: { height: "50%", width: "100%", padding: 16 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area",
-          steps: [
-            {
-              animation: { height: "50%", width: "100%", padding: 48 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=600 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-01",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1000 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-02",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1400 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-03",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1800 top", end: "+=600" },
-            },
-          ],
-        },
+      // 只保留 row01 / row02
+      row01Pin: isMobile ? "+=2500" : "+=6000",
 
-        {
-          selector: ".row-03",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=4000", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .r3-img",
-          steps: [
-            {
-              animation: { height: "50%", width: "100%", padding: 16 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area",
-          steps: [
-            {
-              animation: { height: "50%", width: "100%", padding: 48 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=600 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-01",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1000 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-02",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1400 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-03",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1800 top", end: "+=600" },
-            },
-          ],
-        },
 
-        {
-          selector: ".row-04",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=4600", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-04 .horizontal-area",
-          steps: [
-            {
-              animation: { x: "-96%" },
-              scroll: { start: "top 20%", end: "+=4600" },
-            },
-          ],
-        },
+      imageAnimation: isMobile
+        ? { height: "50%", width: "100%", padding: 16 }
+        : { width: "60%", padding: 16 },
 
-        {
-          selector: ".row-05",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=1000", pin: true },
-            },
-          ],
-        },
-      ];
-    } else {
-      rows = [
-        {
-          selector: ".background-fixed",
-          steps: [
-            {
-              animation: { top: 200 },
-              scroll: { start: "top top", end: "+=1000" },
-            },
-          ],
-        },
-        {
-          selector: ".row-01",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=7000", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-01 .bg-layer",
-          steps: [
-            {
-              animation: { opacity: 1 },
-              scroll: { start: "top top", end: "+=500" },
-            },
-          ],
-        },
+      textAreaAnimation: isMobile
+        ? { height: "50%", width: "100%", padding: 48 }
+        : { width: "40%", padding: 48 },
+    };
 
-        {
-          selector: ".row-02",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=3500", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .r2-img",
-          steps: [
-            {
-              animation: { width: "60%", padding: 16 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area",
-          steps: [
-            {
-              animation: { width: "40%", padding: 48 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=600 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-01",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1000 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-02",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1400 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-02 .text-area .content-03",
-          trigger: ".row-02 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1800 top", end: "+=600" },
-            },
-          ],
-        },
 
-        {
-          selector: ".row-03",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=3500", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .r3-img",
-          steps: [
-            {
-              animation: { width: "60%", padding: 16 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area",
-          steps: [
-            {
-              animation: { width: "40%", padding: 48 },
-              scroll: { start: "top+=200 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=600 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-01",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1000 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-02",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1400 top", end: "+=600" },
-            },
-          ],
-        },
-        {
-          selector: ".row-03 .text-area .content-03",
-          trigger: ".row-03 .text-area .title",
-          steps: [
-            {
-              animation: { y: -32, opacity: 1 },
-              scroll: { start: "top+=1800 top", end: "+=600" },
-            },
-          ],
-        },
+    // 只保留 row01 / row02
+    const rows: RowAnimationItem[] = [
+      {
+        selector: ".background-fixed",
+        steps: [
+          {
+            animation: { top: config.backgroundTop },
+            scroll: { start: "top top", end: "+=1000" },
+            
+          },
+        ],
+      },
 
-        {
-          selector: ".row-04",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=4600", pin: true },
-            },
-          ],
-        },
-        {
-          selector: ".row-04 .horizontal-area",
-          steps: [
-            {
-              animation: { x: "-72%" },
-              scroll: { start: "top 20%", end: "+=4600" },
-            },
-          ],
-        },
+      {
+        selector: ".row-01",
+        steps: [
+          {
+            animation: {},
+            scroll: { start: "top top", end: config.row01Pin, pin: true },
+           
+          },
+        ],
+      },
+      {
+        selector: ".row-01 .bg-layer",
+        steps: [
+          {
+            animation: { opacity: 1 },
+            scroll: { start: "top top", end: "+=500" },
+          },
+        ],
+      },
 
-        {
-          selector: ".row-05",
-          steps: [
-            {
-              animation: {},
-              scroll: { start: "top top", end: "+=1200", pin: true },
-            },
-          ],
-        },
-      ];
-    }
+      
+    ];
 
     rows.forEach(({ selector, steps, trigger }) => {
       steps.forEach(({ animation, scroll, markers }) => {
@@ -913,30 +574,7 @@ export function useGsapAnimations() {
     });
   }
 
-  function startBgTextLoop() {
-    gsap.to(".bgText-t01", {
-      x: "-200vw",
-      duration: 30,
-      repeat: -1,
-      ease: "linear",
-      delay: 1,
-    });
-
-    gsap.to(".bgText-t02", {
-      x: "-200vw",
-      duration: 20,
-      repeat: -1,
-      ease: "linear",
-    });
-
-    gsap.to(".bgText-t03", {
-      x: "-200vw",
-      duration: 32,
-      repeat: -1,
-      ease: "linear",
-      delay: 3,
-    });
-  }
+  
 
   function initAnimations() {
     gsap.from(".my-navbar", {
@@ -947,7 +585,7 @@ export function useGsapAnimations() {
 
     rowSetAni();
     row01BlockTimeline();
-    startBgTextLoop();
+  
 
     ScrollTrigger.refresh();
   }
@@ -962,7 +600,7 @@ export function useGsapAnimations() {
   }
 
   return {
-    setVhUnit,
+
     initAnimations,
     clearAnimations,
     refreshAnimations,

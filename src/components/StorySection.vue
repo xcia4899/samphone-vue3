@@ -38,7 +38,7 @@ defineProps({
 // ========================================
 .row-02,
 .row-03 {
-  min-height: calc(var(--vh, 1vh) * 100);
+  height:  100vh;
   display: flex;
   align-items: center;
   justify-content: flex-end;
