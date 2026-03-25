@@ -2,7 +2,7 @@
   <section class="row-05">
     <div v-for="item in products" :key="item.title" class="card">
       <img :src="item.image" :alt="item.title" />
-      <div class="title" v-html="item.title" />
+      <div class="title" v-html="item.title" ></div>
     </div>
   </section>
 </template>
