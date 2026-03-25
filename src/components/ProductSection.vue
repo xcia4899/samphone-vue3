@@ -99,12 +99,7 @@ const products = [
       width: 120px;
       height: 2px;
       margin: 20px auto 0;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        $color-gold,
-        transparent
-      );
+      background: linear-gradient(90deg, transparent, $color-gold, transparent);
       opacity: 0.8;
     }
   }
@@ -120,7 +115,9 @@ const products = [
     aspect-ratio: 3 / 5;
     cursor: pointer;
     border-radius: 24px;
-    transition: transform 0.5s ease, filter 0.5s ease;
+    transition:
+      transform 0.5s ease,
+      filter 0.5s ease;
 
     .card-frame {
       position: relative;
@@ -173,7 +170,9 @@ const products = [
       display: block;
       transform: scale(1);
       filter: brightness(0.48) saturate(0.75);
-      transition: transform 0.8s ease, filter 0.6s ease;
+      transition:
+        transform 0.8s ease,
+        filter 0.6s ease;
     }
 
     // 遮罩
@@ -181,14 +180,13 @@ const products = [
       position: absolute;
       inset: 0;
       z-index: 1;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.08) 0%,
-          rgba(0, 0, 0, 0.12) 38%,
-          rgba(54, 8, 3, 0.3) 60%,
-          rgba(26, 5, 2, 0.88) 100%
-        );
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.12) 38%,
+        rgba(54, 8, 3, 0.3) 60%,
+        rgba(26, 5, 2, 0.88) 100%
+      );
     }
 
     // 光暈
@@ -231,7 +229,7 @@ const products = [
 
       backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 220, 160, 0.2);
-      border-radius: 0 0 18px 18px ;
+      border-radius: 0 0 18px 18px;
 
       box-shadow:
         0 8px 24px rgba(0, 0, 0, 0.25),
@@ -259,36 +257,36 @@ const products = [
     }
 
     // hover
-    @media (hover: hover) {
-      &:hover {
-        transform: translateY(-4px);
 
-        .card-frame {
-          box-shadow:
-            0 24px 50px rgba(0, 0, 0, 0.45),
-            0 0 0 1px rgba(255, 220, 150, 0.2),
-            0 0 28px rgba(255, 187, 94, 0.18);
+    &:hover {
+      transform: translateY(-4px);
 
-          &::after {
-            left: 150%;
-          }
-        }
+      .card-frame {
+        box-shadow:
+          0 24px 50px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(255, 220, 150, 0.2),
+          0 0 28px rgba(255, 187, 94, 0.18);
 
-        img {
-          transform: scale(1.06);
-          filter: brightness(0.94) saturate(1.05);
-        }
-
-        .card-glow {
-          opacity: 1;
-        }
-
-        .title {
-          color: $color-gold;
-          border-color: rgba(255, 220, 160, 0.38);
+        &::after {
+          left: 150%;
         }
       }
+
+      img {
+        transform: scale(1.06);
+        filter: brightness(0.94) saturate(1.05);
+      }
+
+      .card-glow {
+        opacity: 1;
+      }
+
+      .title {
+        color: $color-gold;
+        border-color: rgba(255, 220, 160, 0.38);
+      }
     }
+
     &:active {
       transform: translateY(-4px);
 
@@ -326,15 +324,14 @@ const products = [
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.03) 25%,
-        transparent 50%,
-        rgba(255, 215, 120, 0.03) 75%,
-        transparent 100%
-      );
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.03) 25%,
+      transparent 50%,
+      rgba(255, 215, 120, 0.03) 75%,
+      transparent 100%
+    );
     pointer-events: none;
   }
 
