@@ -9,8 +9,7 @@
         :centered-slides="false"
         :grab-cursor="true"
         :navigation="true"
-         :scrollbar="{ draggable: true }"
-         
+        :scrollbar="{ draggable: true }"
       >
         <SwiperSlide
           v-for="(item, index) in carddata"
@@ -95,8 +94,8 @@ function closeCard() {
 .row-04 {
   min-height: 100vh;
   padding: 16px;
-  background:$color-darkred;
-  background:linear-gradient(  #2b0702,#551007 ) ;
+  background: $color-darkred;
+  background: linear-gradient(#2b0702, #551007);
   // overflow: hidden;
   display: grid;
   place-items: center;
@@ -110,7 +109,6 @@ function closeCard() {
     height: 100%;
     width: 100%;
     padding: 0 40px;
-
   }
 
   .process-slide {
@@ -120,7 +118,11 @@ function closeCard() {
     align-items: center;
     overflow: visible;
   }
- 
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 96%; // 往下
+    transform: translateY(-50%);
+  }
 
   .card {
     position: relative;
@@ -308,7 +310,7 @@ function closeCard() {
     }
 
     .card {
-      width: 78vw;
+      width: 60vw;
       height: 420px;
 
       .title {
@@ -405,6 +407,4 @@ function closeCard() {
     border-radius: 20px;
   }
 }
-
-
 </style>
