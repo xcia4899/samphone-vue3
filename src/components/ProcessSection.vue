@@ -1,5 +1,10 @@
 <template>
   <section class="row-04">
+    <div class="section-header">
+      <div class="sub">HOW IT'S MADE</div>
+      <h1 class="main-title">製作流程</h1>
+      <div class="divider"></div>
+    </div>
     <div class="process-inner">
       <Swiper
         class="process-swiper"
@@ -93,18 +98,24 @@ function closeCard() {
 <style lang="scss">
 .row-04 {
   min-height: 100vh;
-  padding: 16px;
+  padding: 32px;
   background: $color-darkred;
   background: linear-gradient(#2b0702, #551007);
   // overflow: hidden;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // place-items: center;
   .process-inner {
     height: 100%;
     display: grid;
     place-items: center;
   }
-
+  .row-04-title {
+    padding: 16px;
+    margin: 0;
+  }
   .process-swiper {
     height: 100%;
     width: 100%;
@@ -139,7 +150,7 @@ function closeCard() {
     &:hover {
       .pic img {
         transform: scale(1.05);
-        filter: brightness(0.6);
+        filter: brightness(0.8);
       }
 
       .undertext {
@@ -354,16 +365,16 @@ function closeCard() {
   &::before {
     top: -20px;
     left: -20px;
-    border-top: 2px solid $color-white;
-    border-left: 2px solid $color-white;
+    border-top: 2px solid #79352c;
+    border-left: 2px solid #79352c;
     animation: cardborderauto 2s ease-out infinite;
   }
 
   &::after {
     right: -20px;
     bottom: -20px;
-    border-right: 2px solid $color-white;
-    border-bottom: 2px solid $color-white;
+    border-right: 2px solid #79352c;
+    border-bottom: 2px solid #79352c;
     animation: cardborderauto 2s ease-out infinite;
   }
 
@@ -404,7 +415,117 @@ function closeCard() {
   100% {
     width: calc(100% + 40px);
     height: calc(100% + 40px);
-    border-radius: 20px;
+    border-radius: 30px;
+  }
+}
+
+
+// =========================
+// header（只影響 title）
+// =========================
+.section-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+
+  .sub {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: rgba($color-gold, 0.6);
+    margin-bottom: 12px;
+  }
+
+  .main-title {
+    font-size: clamp(34px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: $color-white;
+    position: relative;
+    display: inline-block;
+
+    &::before {
+      right: 100%;
+      margin-right: 20px;
+    }
+
+    &::after {
+      left: 100%;
+      margin-left: 20px;
+    }
+  }
+
+  .divider {
+    width: 120px;
+    height: 2px;
+    margin: 20px auto 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-gold,
+      transparent
+    );
+    opacity: 0.8;
+  }
+}
+
+/* 卡片標題下短裝飾線 */
+.row-04 .card .title::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 2px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 223, 210, 0.95),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 10px rgba(255, 190, 160, 0.28);
+}
+
+/* swiper 按鈕加一點質感 */
+.row-04 .swiper-button-prev,
+.row-04 .swiper-button-next {
+  width: 46px;
+  height: 46px;
+  padding: 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.row-04 .swiper-button-prev::after,
+.row-04 .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* 手機版避免裝飾太擠 */
+@media (max-width: 768px) {
+  .row-04::before {
+    top: 20px;
+    left: 10px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .row-04::after {
+    right: 0;
+    bottom: 20px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .row-04 .row-04-title {
+    padding: 14px 18px 20px;
+    letter-spacing: 4px;
   }
 }
 </style>

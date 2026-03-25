@@ -216,8 +216,8 @@ const bgLayerStyle = {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 100px;
-    height: 100px;
+    width: clamp(40px , 8vw,100px);
+    height: clamp(40px , 8vw,100px);
     border: 1px solid;
     border-radius: 50%;
     opacity: 0;

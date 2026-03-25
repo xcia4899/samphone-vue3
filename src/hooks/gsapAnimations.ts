@@ -163,16 +163,7 @@ export function useGsapAnimations() {
           },
         ],
       },
-      {
-        selector: ".row-05",
-        steps: [
-          {
-            animation: { opacity: 1 },
-            scroll: { start: "top top", end: "+=500" ,pin: true},
-          
-          },
-        ],
-      },
+      
     ];
 
     rows.forEach(({ selector, steps, trigger }) => {

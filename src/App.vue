@@ -18,7 +18,7 @@
         section-class="row-03"
         image-class="r2-img"
         :image="publicUrl('images/bg/IMG_1907.jpg')"
-        title="Samphone"
+        title="聲音與時間的堆疊"
         :contents="row03Contents"
       />
       <ProcessSection />
