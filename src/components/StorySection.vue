@@ -2,16 +2,15 @@
   <section :class="sectionClass">
     <div class="section-inner" :class="{ reverse }">
       <div class="text-area">
-        <div class="title">{{ title }}</div>
+        <h2 class="title">{{ title }}</h2>
 
-        <div
+        <p
           v-for="(text, index) in contents"
           :key="index"
           class="text-content"
-          :class="`content-0${index + 1}`"
         >
           {{ text }}
-        </div>
+        </p>
       </div>
 
       <div class="img-control" :class="imageClass">
@@ -32,75 +31,91 @@ defineProps({
 });
 </script>
 
-<style lang="scss">
-// ========================================
-// row-02 / row-03
-// ========================================
+<style lang="scss" scoped>
 .row-02,
 .row-03 {
-  height:  100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: $color-white;
-  padding: 0 48px;
+  width: 100%;
+  min-height: 100vh;
+  background: #2b0702;
+  color: #fff;
+  padding: 0;
+}
 
-  .section-inner {
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    gap: 0;
+.section-inner {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.section-inner.reverse {
+  flex-direction: row-reverse;
+}
+
+.text-area {
+  width: 42%;
+  min-height: 100vh;
+  padding: 80px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0 0 32px;
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text-content {
+  margin: 0 0 24px;
+  font-size: 18px;
+  line-height: 1.9;
+  max-width: 42rem;
+}
+
+.img-control {
+  width: 58%;
+  min-height: 100vh;
+}
+
+.img-control img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 手機版 */
+@media (max-width: 768px) {
+  .section-inner,
+  .section-inner.reverse {
+    flex-direction: column;
   }
 
-  .section-inner.reverse {
-    flex-direction: row-reverse;
+  .text-area,
+  .img-control {
+    width: 100%;
+    min-height: auto;
   }
 
   .text-area {
-    width: 0%;
-    height: 100%;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-    cursor: ns-resize;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    @include textset;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .title,
-  .text-content {
-    opacity: 0;
-    transform: translateY(32px);
-  }
-
-  .title {
-    margin: 0 0 24px;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 900;
-
-    &:hover {
-      color: $color-gold;
-    }
-  }
-
-  .text-content {
-    max-width: 42rem;
-    margin-bottom: 16px;
-    font-size: 18px;
-    line-height: 1.9;
+    padding: 48px 24px;
   }
 
   .img-control {
-    padding: 0;
+    height: 50vh;
+  }
+
+  .title {
+    margin-bottom: 24px;
+    font-size: 32px;
+  }
+
+  .text-content {
+    font-size: 16px;
+    line-height: 1.8;
   }
 }
 </style>

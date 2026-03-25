@@ -7,13 +7,13 @@
       <BackgroundCarousel />
       <HeroSection />
 
-      <!-- <StorySection
+      <StorySection
         section-class="row-02"
         image-class="r2-img"
         image="/images/bg/IMG_1907.jpg"
         title="勝風樂器｜Samphone"
         :contents="row02Contents"
-      /> -->
+      />
 
       <ProcessSection />
       <ProductSection />

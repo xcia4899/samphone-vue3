@@ -104,11 +104,10 @@
     font-weight: bold;
     cursor: default;
     user-select: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 
     &:hover {
       color: $color-gold;
-      font-weight: bolder;
     }
   }
 

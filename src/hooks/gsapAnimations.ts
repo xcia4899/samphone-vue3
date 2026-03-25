@@ -35,8 +35,6 @@ type TimelineItem = {
 };
 
 export function useGsapAnimations() {
-
-
   function scrollAnimation(
     selector: string,
     animation: gsap.TweenVars,
@@ -96,7 +94,6 @@ export function useGsapAnimations() {
       // 只保留 row01 / row02
       row01Pin: isMobile ? "+=2500" : "+=6000",
 
-
       imageAnimation: isMobile
         ? { height: "50%", width: "100%", padding: 16 }
         : { width: "60%", padding: 16 },
@@ -106,7 +103,6 @@ export function useGsapAnimations() {
         : { width: "40%", padding: 48 },
     };
 
-
     // 只保留 row01 / row02
     const rows: RowAnimationItem[] = [
       {
@@ -115,7 +111,6 @@ export function useGsapAnimations() {
           {
             animation: { top: config.backgroundTop },
             scroll: { start: "top top", end: "+=1000" },
-            
           },
         ],
       },
@@ -126,7 +121,6 @@ export function useGsapAnimations() {
           {
             animation: {},
             scroll: { start: "top top", end: config.row01Pin, pin: true },
-           
           },
         ],
       },
@@ -139,8 +133,36 @@ export function useGsapAnimations() {
           },
         ],
       },
-
-      
+      {
+        selector: ".row-02",
+        steps: [
+          {
+            animation: { opacity: 1 },
+            scroll: { start: "top top", end: "+=500" ,pin: true},
+          
+          },
+        ],
+      },
+      {
+        selector: ".row-04",
+        steps: [
+          {
+            animation: { opacity: 1 },
+            scroll: { start: "top top", end: "+=500" ,pin: true},
+          
+          },
+        ],
+      },
+      {
+        selector: ".row-05",
+        steps: [
+          {
+            animation: { opacity: 1 },
+            scroll: { start: "top top", end: "+=500" ,pin: true},
+          
+          },
+        ],
+      },
     ];
 
     rows.forEach(({ selector, steps, trigger }) => {
@@ -293,10 +315,10 @@ export function useGsapAnimations() {
         steps: [
           { y: "-100%", duration: 10 },
           { y: "-100%", duration: 6 },
-          { y: "-100%", duration: 8 },
-          { y: "-100%", duration: 6 },
-          { y: "0%", duration: 10 },
+          { y: "0%", duration: 8 },
           { y: "0%", duration: 6 },
+          { y: "-100%", duration: 10 },
+          { y: "-100%", duration: 6 },
           { y: "-100%", duration: 10 },
           { y: "-100%", duration: 4 },
           { y: "-100%", duration: 10 },
@@ -574,8 +596,6 @@ export function useGsapAnimations() {
     });
   }
 
-  
-
   function initAnimations() {
     gsap.from(".my-navbar", {
       y: -120,
@@ -585,7 +605,6 @@ export function useGsapAnimations() {
 
     rowSetAni();
     row01BlockTimeline();
-  
 
     ScrollTrigger.refresh();
   }
@@ -600,7 +619,6 @@ export function useGsapAnimations() {
   }
 
   return {
-
     initAnimations,
     clearAnimations,
     refreshAnimations,
