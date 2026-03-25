@@ -144,6 +144,16 @@ export function useGsapAnimations() {
         ],
       },
       {
+        selector: ".row-03",
+        steps: [
+          {
+            animation: { opacity: 1 },
+            scroll: { start: "top top", end: "+=500" ,pin: true},
+          
+          },
+        ],
+      },
+      {
         selector: ".row-04",
         steps: [
           {

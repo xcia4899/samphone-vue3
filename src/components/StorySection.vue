@@ -36,7 +36,7 @@ defineProps({
 .row-03 {
   width: 100%;
   min-height: 100vh;
-  background: #2b0702;
+  background:linear-gradient(#551007, #2b0702 ) ;
   color: #fff;
   padding: 0;
 }

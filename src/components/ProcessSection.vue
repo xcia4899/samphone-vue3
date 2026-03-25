@@ -10,6 +10,7 @@
         :grab-cursor="true"
         :navigation="true"
          :scrollbar="{ draggable: true }"
+         
       >
         <SwiperSlide
           v-for="(item, index) in carddata"
@@ -95,6 +96,7 @@ function closeCard() {
   min-height: 100vh;
   padding: 16px;
   background:$color-darkred;
+  background:linear-gradient(  #2b0702,#551007 ) ;
   // overflow: hidden;
   display: grid;
   place-items: center;

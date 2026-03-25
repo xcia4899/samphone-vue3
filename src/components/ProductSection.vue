@@ -38,7 +38,7 @@ const products = [
   gap: 24px;
   padding: 80px 32px;
   white-space: normal;
-
+  background: #551007;
   .card {
     width: 25%;
     min-width: 280px;

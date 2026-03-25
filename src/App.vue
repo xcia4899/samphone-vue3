@@ -10,11 +10,17 @@
       <StorySection
         section-class="row-02"
         image-class="r2-img"
-        image="/images/bg/IMG_1907.jpg"
+        image="/images/bg/IMG_4425.jpg"
         title="勝風樂器｜Samphone"
         :contents="row02Contents"
       />
-
+      <StorySection
+        section-class="row-03"
+        image-class="r2-img"
+        image="/images/bg/IMG_1907.jpg"
+        title="勝風樂器｜Samphone"
+        :contents="row03Contents"
+      />
       <ProcessSection />
       <ProductSection />
       <SiteFooter />
@@ -44,11 +50,11 @@ const row02Contents = [
   "品牌一路走來，始終堅持以工藝為本，將對音色與品質的要求，落實在每一件樂器之中。",
 ];
 
-// const row03Contents = [
-//   "從鑄造、焊接、研磨、刻花、拋光到上漆與組裝，每一個製程都影響最終的音色表現與手感。",
-//   "我們重視材料、結構與細節處理，讓樂器不只具備穩定性，也能在演奏時展現細膩而有層次的共鳴。",
-//   "這不只是製造流程，更是對工藝與聲音的長期累積。",
-// ];
+const row03Contents = [
+  "從鑄造、焊接、研磨、刻花、拋光到上漆與組裝，每一個製程都影響最終的音色表現與手感。",
+  "我們重視材料、結構與細節處理，讓樂器不只具備穩定性，也能在演奏時展現細膩而有層次的共鳴。",
+  "這不只是製造流程，更是對工藝與聲音的長期累積。",
+];
 
 const {  initAnimations, clearAnimations, refreshAnimations } =
   useGsapAnimations();
