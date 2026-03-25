@@ -18,7 +18,7 @@
         section-class="row-03"
         image-class="r2-img"
         image="/images/bg/IMG_1907.jpg"
-        title="勝風樂器｜Samphone"
+        title="Samphone"
         :contents="row03Contents"
       />
       <ProcessSection />
