@@ -1,7 +1,7 @@
 <template>
   <footer class="site-footer">
     <div class="footer-top">
-      <img src="/images/logo/samphone-logo-02.png" alt="Samphone logo" />
+      <img :src="logoSrc" alt="Samphone logo" />
     </div>
 
     <hr />
@@ -47,6 +47,12 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+import { publicUrl } from "../utils/publicUrl";
+
+const logoSrc = publicUrl("images/logo/samphone-logo-02.png");
+</script>
 
 <style lang="scss">
 // ========================================

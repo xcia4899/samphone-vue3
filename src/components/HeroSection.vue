@@ -1,6 +1,6 @@
 <template>
   <section class="row-01">
-    <div class="bg-layer"></div>
+    <div class="bg-layer" :style="bgLayerStyle"></div>
 
     <div class="block-control">
       <div v-for="n in 12" :key="n" class="block" :class="`block${n}`" ></div>
@@ -9,7 +9,7 @@
     <div class="aniarea textani-LT">
       <img
         class="ani anitlogo"
-        src="/images/logo/samphone-logo-02.png"
+        :src="logoSrc"
         alt=""
       />
     </div>
@@ -28,7 +28,7 @@
     <div class="aniarea textani-RT">
       <img
         class="ani anitlogo"
-        src="/images/logo/samphone-logo-02.png"
+        :src="logoSrc"
         alt=""
       />
     </div>
@@ -39,11 +39,21 @@
 
     <div class="aniarea textani-RM">
       <div class="circle mask-container">
-        <img src="/images/bg/IMG_1118.jpg" class="masked-image" alt="" />
+        <img :src="maskImageSrc" class="masked-image" alt="" />
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { publicUrl } from "../utils/publicUrl";
+
+const logoSrc = publicUrl("images/logo/samphone-logo-02.png");
+const maskImageSrc = publicUrl("images/bg/IMG_1118.jpg");
+const bgLayerStyle = {
+  backgroundImage: `url(${publicUrl("images/bg/IMG_0634.jpg")})`,
+};
+</script>
 
 <style lang="scss">
 // ========================================
@@ -59,7 +69,6 @@
   .bg-layer {
     position: absolute;
     inset: 0;
-    background-image: url("/images/bg/IMG_0634.jpg");
     background-size: cover;
     background-position: center;
     opacity: 0.3;

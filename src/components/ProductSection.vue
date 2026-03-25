@@ -8,18 +8,20 @@
 </template>
 
 <script setup>
+import { publicUrl } from "../utils/publicUrl";
+
 const products = [
   {
     title: "中音薩克斯風 <br />(Alto Saxophone)",
-    image: "/images/row5/IMG_0640.jpg",
+    image: publicUrl("images/row5/IMG_0640.jpg"),
   },
   {
     title: "次中音薩克斯風 <br />(Tenor Saxophone)",
-    image: "/images/row5/IMG_0639.jpg",
+    image: publicUrl("images/row5/IMG_0639.jpg"),
   },
   {
     title: "薩克斯風配件",
-    image: "/images/bg/IMG_1907.jpg",
+    image: publicUrl("images/bg/IMG_1907.jpg"),
   },
 ];
 </script>

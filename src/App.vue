@@ -10,14 +10,14 @@
       <StorySection
         section-class="row-02"
         image-class="r2-img"
-        image="/images/bg/IMG_4425.jpg"
+        :image="publicUrl('images/bg/IMG_4425.jpg')"
         title="勝風樂器｜Samphone"
         :contents="row02Contents"
       />
       <StorySection
         section-class="row-03"
         image-class="r2-img"
-        image="/images/bg/IMG_1907.jpg"
+        :image="publicUrl('images/bg/IMG_1907.jpg')"
         title="Samphone"
         :contents="row03Contents"
       />
@@ -41,6 +41,7 @@ import SiteHeader from "./components/SiteHeader.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 
 import { useGsapAnimations } from "./hooks/gsapAnimations";
+import { publicUrl } from "./utils/publicUrl";
 
 const introPlayed = ref(false);
 

@@ -24,14 +24,15 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectFade, Autoplay } from "swiper/modules";
+import { publicUrl } from "../utils/publicUrl";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 
 const images = [
-  "/images/bg/IMG_1891.jpg",
-  "/images/bg/IMG_1907.jpg",
-  "/images/bg/J_03795.jpg",
+  publicUrl("images/bg/IMG_1891.jpg"),
+  publicUrl("images/bg/IMG_1907.jpg"),
+  publicUrl("images/bg/J_03795.jpg"),
 ];
 </script>
 

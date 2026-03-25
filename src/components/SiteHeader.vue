@@ -23,7 +23,7 @@
           <div class="offcanvas-header">
             <h5 id="offcanvasDarkNavbarLabel" class="offcanvas-title">
               <img
-                src="/images/logo/samphone-logo-02.png"
+                :src="logoSrc"
                 alt="Samphone logo"
               />
             </h5>
@@ -86,6 +86,12 @@
     </nav>
   </header>
 </template>
+
+<script setup>
+import { publicUrl } from "../utils/publicUrl";
+
+const logoSrc = publicUrl("images/logo/samphone-logo-02.png");
+</script>
 
 <style lang="scss">
 // ========================================

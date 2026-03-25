@@ -2,12 +2,16 @@
 <template>
   <div class="intro" @animationend="onAnimationEnd">
     <div class="intro-logo">
-      <img src="/images/logo/samphone-logo.png" alt="" />
+      <img :src="logoSrc" alt="" />
     </div>
   </div>
 </template>
 
 <script setup>
+import { publicUrl } from "../utils/publicUrl";
+
+const logoSrc = publicUrl("images/logo/samphone-logo.png");
+
 const emit = defineEmits(["finished"]);
 
 function onAnimationEnd(event) {
