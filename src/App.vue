@@ -22,13 +22,14 @@
         :contents="row03Contents"
       />
       <ProcessSection />
-      <ProductSection />
+      <section id="products"><ProductSection /></section>
+
       <SiteFooter />
     </div>
   </div>
 </template>
 
-<script setup >
+<script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 
 import IntroScreen from "./components/IntroScreen.vue";
@@ -57,7 +58,7 @@ const row03Contents = [
   "這不只是製造流程，更是對工藝與聲音的長期累積。",
 ];
 
-const {  initAnimations, clearAnimations, refreshAnimations } =
+const { initAnimations, clearAnimations, refreshAnimations } =
   useGsapAnimations();
 
 async function handleIntroFinished() {
