@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "node:path";
 
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "/samphone-vue3/" : "/",
+  base: (import.meta as any).env.VITE_BASE_PATH || "/",
   plugins: [vue()],
   resolve: {
     alias: { "@": path.resolve(__dirname, "src") }

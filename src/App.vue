@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 
 import IntroScreen from "./components/IntroScreen.vue";

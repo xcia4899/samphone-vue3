@@ -1,7 +1,10 @@
 /// <reference types="vite/client" />
 
-declare module "*.vue" {
-  import { DefineComponent } from "vue";
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
+interface ImportMetaEnv {
+  readonly VITE_BASE_PATH: string;
+  // 你可以在這裡定義其他自定義變數的類型，增加開發時的提示
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }
