@@ -178,7 +178,12 @@ body {
       width: 180px;
       clip-path: circle(40% at 50% 50%);
 
-      &:hover {
+      @media (hover: hover) {
+        &:hover {
+          clip-path: circle(50% at 50% 50%);
+        }
+      }
+      &:active {
         clip-path: circle(50% at 50% 50%);
       }
     }
@@ -246,7 +251,15 @@ body {
           }
         }
 
-        &:hover {
+        @media (hover: hover) {
+          &:hover {
+            .title {
+              top: 62%;
+              left: 25%;
+            }
+          }
+        }
+        &:active {
           .title {
             top: 62%;
             left: 25%;

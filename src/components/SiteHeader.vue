@@ -194,7 +194,14 @@ function scrollToSection(id) {
         0 4px 12px rgba(0, 0, 0, 0.14);
     }
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        transform: rotate(12deg);
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba($color-white, 0.45);
+      }
+    }
+    &:active {
       transform: rotate(12deg);
       background: rgba(255, 255, 255, 0.14);
       border-color: rgba($color-white, 0.45);
@@ -238,7 +245,13 @@ function scrollToSection(id) {
         opacity: 0.9;
         transition: transform 0.3s ease, opacity 0.3s ease;
 
-        &:hover {
+        @media (hover: hover) {
+          &:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+          }
+        }
+        &:active {
           opacity: 1;
           transform: rotate(90deg);
         }
@@ -286,12 +299,19 @@ function scrollToSection(id) {
           flex-shrink: 0;
         }
 
-        &:hover,
         &:focus,
+        &:active,
         &.active {
           color: #fff;
           background: rgba(255, 255, 255, 0.1);
           transform: translateX(4px);
+        }
+        @media (hover: hover) {
+          &:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+          }
         }
       }
     }
@@ -322,10 +342,16 @@ function scrollToSection(id) {
           background 0.3s ease,
           transform 0.3s ease;
 
-        &:hover,
-        &:focus {
+        &:focus,
+        &:active {
           background: rgba(255, 255, 255, 0.14);
           transform: translateX(4px);
+        }
+        @media (hover: hover) {
+          &:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateX(4px);
+          }
         }
       }
     }

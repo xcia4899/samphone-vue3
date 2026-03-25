@@ -147,7 +147,20 @@ function closeCard() {
       transform 0.35s ease,
       box-shadow 0.35s ease;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        .pic img {
+          transform: scale(1.05);
+          filter: brightness(0.8);
+        }
+
+        .undertext {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+    &:active {
       .pic img {
         transform: scale(1.05);
         filter: brightness(0.8);
@@ -254,7 +267,12 @@ function closeCard() {
   background: rgba(255, 255, 255, 0.14);
   transition: 0.3s ease;
 
-  &:hover {
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+  }
+  &:active {
     background: rgba(255, 255, 255, 0.24);
   }
 }
@@ -378,8 +396,14 @@ function closeCard() {
     animation: cardborderauto 2s ease-out infinite;
   }
 
-  &:hover::before,
-  &:hover::after {
+  @media (hover: hover) {
+    &:hover::before,
+    &:hover::after {
+      animation: cardborderani 1s ease-out forwards;
+    }
+  }
+  &:active::before,
+  &:active::after {
     animation: cardborderani 1s ease-out forwards;
   }
 }

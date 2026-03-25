@@ -147,12 +147,21 @@ const logoSrc = publicUrl("images/logo/samphone-logo-02.png");
       transition: width 0.3s ease;
     }
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        color: $color-gold;
+        opacity: 1;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+    &:active {
       color: $color-gold;
       opacity: 1;
     }
-
-    &:hover::after {
+    &:active::after {
       width: 100%;
     }
   }

@@ -115,7 +115,12 @@ const bgLayerStyle = {
     user-select: none;
     transition: color 0.3s ease;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        color: $color-gold;
+      }
+    }
+    &:active {
       color: $color-gold;
     }
   }
@@ -224,7 +229,12 @@ const bgLayerStyle = {
     clip-path: circle(80% at 50% 50%);
     transition: clip-path 0.3s ease;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        clip-path: circle(100% at 50% 50%);
+      }
+    }
+    &:active {
       clip-path: circle(100% at 50% 50%);
     }
 

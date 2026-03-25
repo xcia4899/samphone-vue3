@@ -171,7 +171,13 @@ defineProps({
   transition: transform 0.8s ease;
 }
 
-.img-frame:hover img {
+@media (hover: hover) {
+  .img-frame:hover img {
+    transform: scale(1.06);
+  }
+}
+
+.img-frame:active img {
   transform: scale(1.06);
 }
 

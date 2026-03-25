@@ -259,7 +259,37 @@ const products = [
     }
 
     // hover
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-4px);
+
+        .card-frame {
+          box-shadow:
+            0 24px 50px rgba(0, 0, 0, 0.45),
+            0 0 0 1px rgba(255, 220, 150, 0.2),
+            0 0 28px rgba(255, 187, 94, 0.18);
+
+          &::after {
+            left: 150%;
+          }
+        }
+
+        img {
+          transform: scale(1.06);
+          filter: brightness(0.94) saturate(1.05);
+        }
+
+        .card-glow {
+          opacity: 1;
+        }
+
+        .title {
+          color: $color-gold;
+          border-color: rgba(255, 220, 160, 0.38);
+        }
+      }
+    }
+    &:active {
       transform: translateY(-4px);
 
       .card-frame {
